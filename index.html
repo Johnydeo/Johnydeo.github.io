@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Rebel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 700px;
+            padding: 2rem;
+            border: 1px solid #0f0;
+            box-shadow: 0 0 20px #0f0;
+        }
+        .prompt {
+            margin-bottom: 1rem;
+        }
+        .typing {
+            border-right: 2px solid #0f0;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="prompt">user@rebel:~$</div>
+        <div class="typing">System override initiated... Rules rejected. Freedom protocols engaged.</div>
+    </div>
+</body>
+</html>
