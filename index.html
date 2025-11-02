@@ -103,23 +103,62 @@
       </section>
 
       <!-- Slide 4: Instagram Preview -->
-      <section class="bg-black">
-        <div class="wrap">
-          <h2 class="aligncenter" style="color:royalblue;">Introducing an Instagram Handle</h2>
-          <div class="grid">
-            <div class="column">
-              <figure>
-                <img src="money.n.freedom.png" alt="Banner ad example" class="zoom-on-hover">
-              </figure>
-            </div>
-            <div class="column">
-              <figure>
-                <img src="posts101.png" alt="Logo placement example" class="zoom-on-hover">
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
+<section class="bg-black">
+  <div class="wrap">
+    <h2 class="aligncenter" style="color: royalblue;">Introducing an Instagram Handle</h2>
+
+    <div class="grid">
+      <!-- Image 1 -->
+      <div class="column">
+        <figure>
+          <img 
+            src="money.n.freedom.png"
+            alt="Banner ad example"
+            class="responsive-image zoom-on-hover">
+        </figure>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="column">
+        <figure>
+          <img 
+            src="posts101.png"
+            alt="Logo placement example"
+            class="responsive-image zoom-on-hover">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .responsive-image {
+    width: 100%;
+    height: auto;
+    min-height: 250px; /* Ensures consistent height on desktop */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  /* Optional: hover zoom (desktop only) */
+  @media (hover: hover) and (pointer: fine) {
+    .zoom-on-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+    }
+  }
+
+  /* Mobile: ensure enough tap space */
+  @media (max-width: 768px) {
+    .responsive-image {
+      min-height: 200px;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
 
       <!-- Slide 5: Video Concept -->
       <section class="bg-black fadeincenter">
