@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -24,14 +25,14 @@
 
         body {
             background-color: var(--bg-color);
+            transition: background-color 20s ease;
             color: var(--text-main);
             font-family: var(--font-family);
-            overflow: hidden; /* Clean viewport */
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
         }
 
-        /* Animated Grain & Gradient Background */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -57,7 +58,11 @@
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
             padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 10;
         }
 
@@ -106,29 +111,33 @@
             animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
         }
 
-        .btn-contact {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #000;
-            padding: 18px 40px;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .button-group {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-            border: 1px solid var(--accent);
+        }
+
+        .btn-contact {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-contact:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(168, 255, 62, 0.2);
+            color: var(--accent);
+            transform: translateY(-4px);
         }
 
-        .btn-contact:active {
-            transform: scale(0.98);
+        .btn-contact svg {
+            width: 32px;
+            height: 32px;
         }
 
         @keyframes fadeUp {
@@ -136,12 +145,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        /* Subtle ambient glow movement */
-        @keyframes ambient {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(2%, 2%); }
         }
 
         @media (max-width: 600px) {
@@ -161,7 +164,17 @@
         <div class="hero-container">
             <h1>Hi, I'm Arshad. <br> Welcome to my small place in this big planet.</h1>
             <p>Based in India, I host everything that comes to my mind right here.</p>
-            <a href="mailto:dummyarshad@proton.me" class="btn-contact">Contact Me</a>
+            <div class="button-group">
+                <a href="mailto:dummyarshad@proton.me" class="btn-contact" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+                <a href="https://wa.me/+916002026252" target="_blank" class="btn-contact" title="WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(99, 230, 190)" d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
+                </a>
+                <a href="https://x.com/BoyArshi" target="_blank" class="btn-contact" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg>
+                </a>
+            </div>
         </div>
     </main>
 
@@ -173,7 +186,18 @@
             document.querySelector('.bg-overlay').style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
 
-        console.log("Arshad's Premium Portfolio Loaded.");
+        // Slow background color transition
+        function updateBackgroundColor() {
+            const h = Math.floor(Math.random() * 360);
+            const s = Math.floor(Math.random() * 10) + 5; // 5-15% saturation
+            const l = Math.floor(Math.random() * 4) + 4;  // 4-8% lightness (dark)
+            document.documentElement.style.setProperty('--bg-color', `hsl(${h}, ${s}%, ${l}%)`);
+        }
+        
+        // Change color every 20 seconds
+        setInterval(updateBackgroundColor, 5000);
+        // Set initial random color shortly after load to start the transition
+        setTimeout(updateBackgroundColor, 100);
     </script>
 </body>
 </html>
