@@ -1,203 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arshad — Digital Space</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --accent: #a8ff3e;
-            --font-family: 'Space Grotesk', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitCircle – Move Together. Grow Stronger.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d14;
+    --bg2: #111520;
+    --bg3: #161b27;
+    --cyan: #00e5ff;
+    --pink: #ff2d78;
+    --lime: #b2ff00;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --card: #131825;
+    --border: rgba(0,229,255,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Space Grotesk',sans-serif; min-height:100vh; overflow-x:hidden; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  .topbar {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(10,13,20,0.88); backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+  }
+  .logo { display:flex; align-items:center; gap:10px; }
+  .logo-icon {
+    width:36px; height:36px; border-radius:50%;
+    background:conic-gradient(from 200deg, var(--cyan), var(--pink), var(--lime), var(--cyan));
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .logo-text { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--cyan); }
+  .top-actions { display:flex; gap:10px; align-items:center; }
+  .badge { background:var(--pink); color:#fff; font-size:10px; font-weight:700; padding:2px 8px; border-radius:20px; letter-spacing:1px; }
+  .avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--pink)); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#0a0d14; cursor:pointer; }
 
-        body {
-            background-color: var(--bg-color);
-            transition: background-color 20s ease;
-            color: var(--text-main);
-            font-family: var(--font-family);
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-        }
+  .nav {
+    position:fixed; bottom:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-around; align-items:center;
+    padding:10px 0 20px;
+    background:rgba(10,13,20,0.95); backdrop-filter:blur(18px);
+    border-top:1px solid var(--border);
+  }
+  .nav-btn { display:flex; flex-direction:column; align-items:center; gap:4px; background:none; border:none; color:var(--muted); cursor:pointer; font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.5px; padding:4px 16px; border-radius:12px; transition:all .2s; }
+  .nav-btn svg { width:20px; height:20px; }
+  .nav-btn.active { color:var(--cyan); }
+  .nav-btn.active svg { filter:drop-shadow(0 0 6px var(--cyan)); }
 
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 50% -20%, #1a1a1a, transparent),
-                radial-gradient(circle at 0% 100%, rgba(168, 255, 62, 0.05), transparent);
-        }
+  .screen { display:none; padding:80px 0 100px; min-height:100vh; }
+  .screen.active { display:block; animation:fadeUp .3s ease; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 
-        .bg-overlay::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            pointer-events: none;
-        }
+  .hero {
+    position:relative; overflow:hidden;
+    margin:0 16px 20px; border-radius:20px;
+    background:linear-gradient(135deg,#0d1a2e 0%,#0f1520 60%,#1a0d1a 100%);
+    padding:28px 24px; border:1px solid var(--border);
+  }
+  .hero::before {
+    content:''; position:absolute; top:-40px; right:-40px;
+    width:200px; height:200px; border-radius:50%;
+    background:radial-gradient(circle,rgba(0,229,255,.15),transparent 70%);
+    pointer-events:none;
+  }
+  .hero-tag { font-size:11px; letter-spacing:2px; color:var(--cyan); font-weight:600; text-transform:uppercase; margin-bottom:6px; }
+  .hero-title { font-family:'Bebas Neue',sans-serif; font-size:42px; line-height:1; color:#fff; margin-bottom:6px; }
+  .hero-title span { color:var(--cyan); }
+  .hero-sub { font-size:13px; color:var(--muted); margin-bottom:18px; }
+  .hero-stats { display:flex; gap:20px; }
+  .hstat { text-align:center; }
+  .hstat-n { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--cyan); line-height:1; }
+  .hstat-l { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+  .live-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--lime); margin-right:5px; animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
+  .section-header { display:flex; justify-content:space-between; align-items:center; padding:0 16px; margin-bottom:12px; }
+  .section-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; color:#fff; }
+  .see-all { font-size:12px; color:var(--cyan); font-weight:600; background:none; border:none; cursor:pointer; }
 
-        .logo {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
+  .events-scroll { display:flex; gap:12px; padding:0 16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:4px; }
+  .events-scroll::-webkit-scrollbar { display:none; }
+  .event-card {
+    flex:0 0 220px; scroll-snap-align:start;
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:16px; cursor:pointer; transition:transform .2s, border-color .2s;
+  }
+  .event-card:hover { transform:translateY(-3px); border-color:var(--cyan); }
+  .event-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .event-sport { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 8px; border-radius:20px; }
+  .sport-cyan { background:rgba(0,229,255,.12); color:var(--cyan); }
+  .sport-pink { background:rgba(255,45,120,.12); color:var(--pink); }
+  .sport-lime { background:rgba(178,255,0,.12); color:var(--lime); }
+  .event-time { font-size:11px; color:var(--muted); }
+  .event-name { font-weight:700; font-size:15px; margin-bottom:4px; }
+  .event-loc { font-size:12px; color:var(--muted); margin-bottom:12px; }
+  .event-footer { display:flex; justify-content:space-between; align-items:center; }
+  .event-users { display:flex; }
+  .eu { width:22px; height:22px; border-radius:50%; border:2px solid var(--card); margin-left:-6px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; }
+  .eu:first-child { margin-left:0; }
+  .eu-count { font-size:11px; color:var(--muted); margin-left:4px; align-self:center; }
+  .join-btn { font-size:11px; font-weight:700; padding:5px 12px; border-radius:20px; border:none; cursor:pointer; background:var(--cyan); color:#0a0d14; letter-spacing:.5px; transition:all .2s; }
+  .join-btn:hover { background:#fff; box-shadow:0 0 12px var(--cyan); }
 
-        main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
+  .circles-list { padding:0 16px; display:flex; flex-direction:column; gap:10px; }
+  .circle-row {
+    display:flex; align-items:center; gap:14px;
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:14px; cursor:pointer; transition:border-color .2s;
+  }
+  .circle-row:hover { border-color:var(--cyan); }
+  .circle-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .ci-cyan { background:rgba(0,229,255,.1); }
+  .ci-pink { background:rgba(255,45,120,.1); }
+  .ci-lime { background:rgba(178,255,0,.1); }
+  .circle-info { flex:1; }
+  .circle-name { font-weight:700; font-size:14px; margin-bottom:2px; }
+  .circle-meta { font-size:12px; color:var(--muted); }
+  .circle-joined { font-size:11px; font-weight:700; color:var(--cyan); background:rgba(0,229,255,.1); padding:4px 10px; border-radius:20px; }
 
-        .hero-container {
-            max-width: 900px;
-        }
+  .search-bar {
+    margin:0 16px 18px; display:flex; align-items:center; gap:10px;
+    background:var(--bg3); border:1px solid var(--border); border-radius:14px;
+    padding:12px 16px;
+  }
+  .search-bar input { flex:1; background:none; border:none; outline:none; color:var(--text); font-family:'Space Grotesk',sans-serif; font-size:14px; }
+  .search-bar input::placeholder { color:var(--muted); }
+  .filter-chips { display:flex; gap:8px; padding:0 16px; margin-bottom:18px; overflow-x:auto; }
+  .filter-chips::-webkit-scrollbar { display:none; }
+  .chip { font-size:12px; font-weight:600; padding:6px 14px; border-radius:20px; border:1px solid var(--border); color:var(--muted); background:none; cursor:pointer; white-space:nowrap; transition:all .2s; letter-spacing:.3px; }
+  .chip.active { background:var(--cyan); color:#0a0d14; border-color:var(--cyan); }
 
-        h1 {
-            font-size: clamp(32px, 6vw, 72px);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            background: linear-gradient(to bottom, #fff 40%, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+  .map-mock {
+    margin:0 16px 18px; border-radius:16px; overflow:hidden;
+    height:200px; position:relative;
+    background:radial-gradient(ellipse at 60% 50%,#0d1f3a 0%,#080c14 100%);
+    border:1px solid var(--border);
+  }
+  .map-grid { position:absolute; inset:0; opacity:.15; }
+  .map-label { position:absolute; bottom:12px; left:14px; }
+  .map-label span { font-size:11px; color:var(--cyan); font-weight:700; letter-spacing:1px; }
+  .map-label p { font-size:13px; color:#fff; font-weight:600; }
+  .map-pin { position:absolute; width:12px; height:12px; border-radius:50%; }
+  .map-pin::after { content:''; position:absolute; inset:-4px; border-radius:50%; border:2px solid currentColor; opacity:.4; animation:ripple 2s infinite; }
+  @keyframes ripple { to{transform:scale(2.5);opacity:0} }
+  .mp1 { top:40%; left:55%; background:var(--cyan); color:var(--cyan); }
+  .mp2 { top:30%; left:35%; background:var(--pink); color:var(--pink); }
+  .mp3 { top:60%; left:65%; background:var(--lime); color:var(--lime); }
+  .mp4 { top:55%; left:30%; background:var(--cyan); color:var(--cyan); }
+  .mp5 { top:25%; left:60%; background:var(--pink); color:var(--pink); }
 
-        p {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-muted);
-            margin-bottom: 48px;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
+  .discover-list { padding:0 16px; display:flex; flex-direction:column; gap:10px; }
+  .discover-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:16px; display:flex; align-items:center; gap:14px; cursor:pointer; transition:border-color .2s;
+  }
+  .discover-card:hover { border-color:var(--cyan); }
+  .dc-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+  .dc-info { flex:1; }
+  .dc-name { font-weight:700; font-size:14px; margin-bottom:2px; }
+  .dc-sub { font-size:12px; color:var(--muted); }
+  .dc-right { text-align:right; }
+  .dc-dist { font-size:11px; color:var(--cyan); font-weight:700; }
+  .dc-time { font-size:11px; color:var(--muted); }
 
-        .button-group {
-            display: flex;
-            gap: 32px;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-        }
+  .lb-header { padding:0 16px 18px; }
+  .lb-title { font-family:'Bebas Neue',sans-serif; font-size:36px; color:#fff; }
+  .lb-title span { color:var(--lime); }
+  .lb-week { font-size:12px; color:var(--muted); margin-top:2px; }
+  .lb-podium { display:flex; justify-content:center; align-items:flex-end; gap:12px; padding:0 16px 24px; }
+  .podium-item { flex:1; max-width:100px; text-align:center; }
+  .podium-bar { border-radius:12px 12px 0 0; display:flex; align-items:flex-end; justify-content:center; padding-bottom:10px; }
+  .p1 { height:110px; background:linear-gradient(to top, rgba(0,229,255,.3), rgba(0,229,255,.05)); border:1px solid rgba(0,229,255,.3); }
+  .p2 { height:80px; background:linear-gradient(to top, rgba(255,45,120,.3), rgba(255,45,120,.05)); border:1px solid rgba(255,45,120,.3); }
+  .p3 { height:60px; background:linear-gradient(to top, rgba(178,255,0,.3), rgba(178,255,0,.05)); border:1px solid rgba(178,255,0,.3); }
+  .pav { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#0a0d14; }
+  .pa1 { background:var(--cyan); }
+  .pa2 { background:var(--pink); }
+  .pa3 { background:var(--lime); }
+  .podium-name { font-size:12px; font-weight:700; margin-top:6px; }
+  .podium-pts { font-size:11px; color:var(--muted); }
+  .podium-rank { font-family:'Bebas Neue',sans-serif; font-size:22px; }
+  .r1 { color:var(--cyan); }
+  .r2 { color:var(--pink); }
+  .r3 { color:var(--lime); }
+  .lb-list { padding:0 16px; display:flex; flex-direction:column; gap:8px; }
+  .lb-row {
+    display:flex; align-items:center; gap:14px;
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:12px 14px;
+  }
+  .lb-pos { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--muted); width:24px; text-align:center; }
+  .lb-av { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#0a0d14; }
+  .lb-name { flex:1; font-weight:600; font-size:14px; }
+  .lb-sport { font-size:11px; color:var(--muted); }
+  .lb-pts { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--cyan); }
 
-        .btn-contact {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  .profile-hero {
+    margin:0 16px 20px; border-radius:20px;
+    background:linear-gradient(135deg,#0d2030 0%,#0f151f 50%,#1a1028 100%);
+    padding:24px; border:1px solid var(--border); text-align:center;
+  }
+  .profile-av { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--pink)); display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:700; color:#0a0d14; margin:0 auto 12px; }
+  .profile-name { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:1px; }
+  .profile-uni { font-size:13px; color:var(--cyan); margin-bottom:14px; }
+  .profile-stats { display:flex; justify-content:center; gap:28px; }
+  .ps { text-align:center; }
+  .ps-n { font-family:'Bebas Neue',sans-serif; font-size:26px; color:#fff; line-height:1; }
+  .ps-l { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+  .profile-badges { padding:0 16px 18px; }
+  .badges-grid { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+  .badge-item { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:8px; }
+  .badge-icon { font-size:20px; }
+  .badge-lbl { font-size:12px; font-weight:600; }
+  .badge-sub { font-size:10px; color:var(--muted); }
+  .profile-sports { padding:0 16px 18px; }
+  .sports-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .sport-chip { padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; }
+  .sc-cyan { background:rgba(0,229,255,.12); color:var(--cyan); border:1px solid rgba(0,229,255,.2); }
+  .sc-pink { background:rgba(255,45,120,.12); color:var(--pink); border:1px solid rgba(255,45,120,.2); }
+  .sc-lime { background:rgba(178,255,0,.12); color:var(--lime); border:1px solid rgba(178,255,0,.2); }
+  .streak-bar { margin:0 16px 18px; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; }
+  .streak-title { font-weight:700; font-size:14px; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+  .streak-dots { display:flex; gap:6px; }
+  .sd { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; text-transform:uppercase; }
+  .sd-done { background:var(--cyan); color:#0a0d14; }
+  .sd-today { background:var(--pink); color:#fff; }
+  .sd-miss { background:var(--bg3); color:var(--muted); border:1px solid var(--border); }
 
-        .btn-contact:hover {
-            color: var(--accent);
-            transform: translateY(-4px);
-        }
+  .chat-list { padding:0 16px; display:flex; flex-direction:column; gap:2px; }
+  .chat-row {
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0; border-bottom:1px solid rgba(255,255,255,.04); cursor:pointer; transition:background .15s;
+    border-radius:4px;
+  }
+  .chat-row:hover { background:rgba(255,255,255,.02); }
+  .chat-av { width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+  .chat-info { flex:1; }
+  .chat-name { font-weight:700; font-size:14px; margin-bottom:2px; }
+  .chat-preview { font-size:12px; color:var(--muted); }
+  .chat-right { text-align:right; }
+  .chat-time { font-size:11px; color:var(--muted); margin-bottom:4px; }
+  .chat-unread { width:18px; height:18px; border-radius:50%; background:var(--cyan); color:#0a0d14; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-left:auto; }
 
-        .btn-contact svg {
-            width: 32px;
-            height: 32px;
-        }
+  .modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); align-items:flex-end; }
+  .modal-overlay.open { display:flex; }
+  .modal-sheet {
+    width:100%; background:var(--bg2); border-radius:24px 24px 0 0;
+    padding:28px 20px 40px; border-top:1px solid var(--border);
+    animation:slideUp .3s ease;
+  }
+  @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+  .modal-handle { width:36px; height:4px; border-radius:2px; background:var(--muted); margin:0 auto 20px; }
+  .modal-title { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; margin-bottom:4px; }
+  .modal-sub { font-size:13px; color:var(--muted); margin-bottom:20px; }
+  .modal-detail { display:flex; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
+  .md-tag { display:flex; align-items:center; gap:6px; font-size:12px; padding:6px 12px; background:var(--bg3); border-radius:20px; color:var(--text); }
+  .modal-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; }
+  .modal-join { width:100%; padding:16px; border:none; border-radius:14px; background:var(--cyan); color:#0a0d14; font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; cursor:pointer; transition:all .2s; }
+  .modal-join:hover { background:#fff; box-shadow:0 0 24px var(--cyan); }
+  .modal-close { position:absolute; top:20px; right:20px; background:var(--bg3); border:none; color:var(--muted); width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  .toast {
+    position:fixed; top:80px; left:50%; transform:translateX(-50%) translateY(-20px); z-index:300;
+    background:var(--card); border:1px solid var(--cyan); border-radius:12px;
+    padding:10px 18px; font-size:13px; font-weight:600; color:var(--cyan);
+    display:flex; align-items:center; gap:8px;
+    opacity:0; transition:all .3s; pointer-events:none;
+  }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-        @media (max-width: 600px) {
-            header { padding: 30px; }
-            h1 { line-height: 1.2; }
-        }
-    </style>
+  ::-webkit-scrollbar { width:4px; height:4px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+</style>
 </head>
 <body>
-    <div class="bg-overlay"></div>
-    
-    <header>
-        <div class="logo">ARSHAD.</div>
-    </header>
 
-    <main>
-        <div class="hero-container">
-            <h1>Hi, I'm Arshad. <br> Welcome to my small place in this big planet.</h1>
-            <p>Based in India, I host everything that comes to my mind right here.</p>
-            <div class="button-group">
-                <a href="mailto:dummyarshad@proton.me" class="btn-contact" title="Email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </a>
-                <a href="https://wa.me/+916002026252" target="_blank" class="btn-contact" title="WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(99, 230, 190)" d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
-                </a>
-                <a href="https://x.com/BoyArshi" target="_blank" class="btn-contact" title="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg>
-                </a>
-            </div>
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-icon">🏃</div>
+    <span class="logo-text">FITCIRCLE</span>
+  </div>
+  <div class="top-actions">
+    <span class="badge"><span class="live-dot"></span>LIVE</span>
+    <div class="avatar">A</div>
+  </div>
+</header>
+
+<!-- HOME -->
+<div class="screen active" id="screen-home">
+  <div class="hero">
+    <div class="hero-tag">📍 Dibrugarh University</div>
+    <div class="hero-title">MOVE<br><span>TOGETHER.</span></div>
+    <div class="hero-sub"><span class="live-dot"></span>24 active circles · 11 events today</div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">340</div><div class="hstat-l">Members</div></div>
+      <div class="hstat"><div class="hstat-n">11</div><div class="hstat-l">Events</div></div>
+      <div class="hstat"><div class="hstat-n">24</div><div class="hstat-l">Circles</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <div class="section-header">
+      <span class="section-title">TODAY'S EVENTS</span>
+      <button class="see-all">See all</button>
+    </div>
+    <div class="events-scroll">
+      <div class="event-card" onclick="openModal('Morning Cycling Group','05:30','Cycling','🚴','Naharkatia Road · 12 riders','Daily sunrise loop starting from DU Gate. 25km route, moderate pace. Helmets required.','cyan')">
+        <div class="event-top"><span class="event-sport sport-cyan">🚴 CYCLING</span><span class="event-time">05:30</span></div>
+        <div class="event-name">Morning Cycling Group</div>
+        <div class="event-loc">📍 Naharkatia Road</div>
+        <div class="event-footer">
+          <div class="event-users">
+            <div class="eu" style="background:#00e5ff;color:#0a0d14">R</div>
+            <div class="eu" style="background:#ff2d78;color:#fff">S</div>
+            <div class="eu" style="background:#b2ff00;color:#0a0d14">P</div>
+            <span class="eu-count">+9</span>
+          </div>
+          <button class="join-btn">JOIN</button>
         </div>
-    </main>
+      </div>
+      <div class="event-card" onclick="openModal('Brahmaputra Run','07:00','Running','🏃','Maijan Ghat · 28 runners','Morning 10km run along the Brahmaputra riverfront. All levels welcome. Water station at 5km mark.','pink')">
+        <div class="event-top"><span class="event-sport sport-pink">🏃 RUNNING</span><span class="event-time">07:00</span></div>
+        <div class="event-name">Brahmaputra Riverfront Run</div>
+        <div class="event-loc">📍 Maijan Ghat</div>
+        <div class="event-footer">
+          <div class="event-users">
+            <div class="eu" style="background:#ff2d78;color:#fff">M</div>
+            <div class="eu" style="background:#00e5ff;color:#0a0d14">A</div>
+            <div class="eu" style="background:#b2ff00;color:#0a0d14">N</div>
+            <span class="eu-count">+25</span>
+          </div>
+          <button class="join-btn">JOIN</button>
+        </div>
+      </div>
+      <div class="event-card" onclick="openModal('Hostel Cup Football','17:00','Football','⚽','DU Main Ground · 22 players','Inter-hostel tournament. Round-robin format. Teams of 11. Registration closes 30 min before.','lime')">
+        <div class="event-top"><span class="event-sport sport-lime">⚽ FOOTBALL</span><span class="event-time">17:00</span></div>
+        <div class="event-name">Football · Hostel Cup</div>
+        <div class="event-loc">📍 DU Main Ground</div>
+        <div class="event-footer">
+          <div class="event-users">
+            <div class="eu" style="background:#b2ff00;color:#0a0d14">K</div>
+            <div class="eu" style="background:#ff2d78;color:#fff">D</div>
+            <div class="eu" style="background:#00e5ff;color:#0a0d14">T</div>
+            <span class="eu-count">+19</span>
+          </div>
+          <button class="join-btn">JOIN</button>
+        </div>
+      </div>
+      <div class="event-card" onclick="openModal('Evening Yoga & Zumba','19:30','Yoga','🧘','Rang Ghar Lawn · 35 going','Open-air yoga and zumba session by certified instructor Priya. Bring your own mat.','cyan')">
+        <div class="event-top"><span class="event-sport sport-cyan">🧘 YOGA</span><span class="event-time">19:30</span></div>
+        <div class="event-name">Evening Yoga & Zumba</div>
+        <div class="event-loc">📍 Rang Ghar Lawn</div>
+        <div class="event-footer">
+          <div class="event-users">
+            <div class="eu" style="background:#00e5ff;color:#0a0d14">P</div>
+            <div class="eu" style="background:#ff2d78;color:#fff">L</div>
+            <div class="eu" style="background:#b2ff00;color:#0a0d14">J</div>
+            <span class="eu-count">+32</span>
+          </div>
+          <button class="join-btn">JOIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        // Ambient background movement
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            document.querySelector('.bg-overlay').style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
+  <div>
+    <div class="section-header">
+      <span class="section-title">YOUR CIRCLES</span>
+      <button class="see-all">Manage</button>
+    </div>
+    <div class="circles-list">
+      <div class="circle-row">
+        <div class="circle-icon ci-cyan">🚴</div>
+        <div class="circle-info">
+          <div class="circle-name">DU Cycling Crew</div>
+          <div class="circle-meta">38 members · 3 rides this week</div>
+        </div>
+        <span class="circle-joined">JOINED</span>
+      </div>
+      <div class="circle-row">
+        <div class="circle-icon ci-pink">⚽</div>
+        <div class="circle-info">
+          <div class="circle-name">Campus Football FC</div>
+          <div class="circle-meta">62 members · Match tomorrow</div>
+        </div>
+        <span class="circle-joined">JOINED</span>
+      </div>
+      <div class="circle-row">
+        <div class="circle-icon ci-lime">🏔️</div>
+        <div class="circle-info">
+          <div class="circle-name">Naga Hills Trekkers</div>
+          <div class="circle-meta">24 members · Trek this weekend</div>
+        </div>
+        <button class="join-btn" onclick="showToast('🎉 Joined Naga Hills Trekkers!')">JOIN</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        // Slow background color transition
-        function updateBackgroundColor() {
-            const h = Math.floor(Math.random() * 360);
-            const s = Math.floor(Math.random() * 10) + 5; // 5-15% saturation
-            const l = Math.floor(Math.random() * 4) + 4;  // 4-8% lightness (dark)
-            document.documentElement.style.setProperty('--bg-color', `hsl(${h}, ${s}%, ${l}%)`);
-        }
-        
-        // Change color every 20 seconds
-        setInterval(updateBackgroundColor, 5000);
-        // Set initial random color shortly after load to start the transition
-        setTimeout(updateBackgroundColor, 100);
-    </script>
+<!-- DISCOVER -->
+<div class="screen" id="screen-discover">
+  <div style="padding:0 16px 16px">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;margin-bottom:2px">DISCOVER<br><span style="color:var(--cyan)">NEARBY</span></div>
+    <div style="font-size:13px;color:var(--muted)">Activities within 5km of campus</div>
+  </div>
+  <div class="search-bar">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color:var(--muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search circles, sports, people…" id="searchInput">
+  </div>
+  <div class="filter-chips">
+    <button class="chip active" onclick="filterChip(this)">All</button>
+    <button class="chip" onclick="filterChip(this)">🚴 Cycling</button>
+    <button class="chip" onclick="filterChip(this)">⚽ Football</button>
+    <button class="chip" onclick="filterChip(this)">🏃 Running</button>
+    <button class="chip" onclick="filterChip(this)">🧘 Yoga</button>
+    <button class="chip" onclick="filterChip(this)">🏔️ Trekking</button>
+    <button class="chip" onclick="filterChip(this)">🏋️ Gym</button>
+  </div>
+  <div class="map-mock">
+    <svg class="map-grid" viewBox="0 0 400 200" preserveAspectRatio="none"><defs><pattern id="g" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0L0 0 0 40" fill="none" stroke="#00e5ff" stroke-width=".4"/></pattern></defs><rect width="400" height="200" fill="url(#g)"/></svg>
+    <div class="map-pin mp1"></div>
+    <div class="map-pin mp2"></div>
+    <div class="map-pin mp3"></div>
+    <div class="map-pin mp4"></div>
+    <div class="map-pin mp5"></div>
+    <div class="map-label"><span>📍 LIVE MAP</span><p>5 events active near you</p></div>
+  </div>
+  <div class="discover-list">
+    <div class="discover-card" onclick="openModal('DU Cycling Crew','Daily 05:30','Cycling','🚴','Naharkatia Road','38 members doing daily city loops and weekend tours. Join for the next sunrise ride!','cyan')">
+      <div class="dc-icon ci-cyan">🚴</div>
+      <div class="dc-info"><div class="dc-name">DU Cycling Crew</div><div class="dc-sub">38 members · Active now</div></div>
+      <div class="dc-right"><div class="dc-dist">0.4 km</div><div class="dc-time">Next: 05:30</div></div>
+    </div>
+    <div class="discover-card" onclick="openModal('Brahmaputra Runners','Daily 07:00','Running','🏃','Maijan Ghat','Morning running group. 5K and 10K routes. All paces welcome.','pink')">
+      <div class="dc-icon ci-pink">🏃</div>
+      <div class="dc-info"><div class="dc-name">Brahmaputra Runners</div><div class="dc-sub">52 members · 3 runs/week</div></div>
+      <div class="dc-right"><div class="dc-dist">1.2 km</div><div class="dc-time">Next: 07:00</div></div>
+    </div>
+    <div class="discover-card" onclick="openModal('Campus Football FC','Weekdays 17:00','Football','⚽','DU Main Ground','Hostel cup & inter-college fixtures. Skill level: intermediate.','lime')">
+      <div class="dc-icon ci-lime">⚽</div>
+      <div class="dc-info"><div class="dc-name">Campus Football FC</div><div class="dc-sub">62 members · Match today</div></div>
+      <div class="dc-right"><div class="dc-dist">0.7 km</div><div class="dc-time">Today 17:00</div></div>
+    </div>
+    <div class="discover-card" onclick="openModal('Gym Partner Hub','Flexible','Gym','🏋️','Chowkidinghee Fitness','Find gym partners based on your schedule, fitness level and workout style.','cyan')">
+      <div class="dc-icon ci-cyan">🏋️</div>
+      <div class="dc-info"><div class="dc-name">Gym Partner Hub</div><div class="dc-sub">29 members · Flexible hours</div></div>
+      <div class="dc-right"><div class="dc-dist">1.8 km</div><div class="dc-time">Now open</div></div>
+    </div>
+    <div class="discover-card" onclick="openModal('Naga Hills Trekkers','Weekends','Trekking','🏔️','Joypur Reserve','Guided weekend treks into Joypur forest reserve and Naga hill trails.','pink')">
+      <div class="dc-icon ci-pink">🏔️</div>
+      <div class="dc-info"><div class="dc-name">Naga Hills Trekkers</div><div class="dc-sub">24 members · Weekend treks</div></div>
+      <div class="dc-right"><div class="dc-dist">3.1 km</div><div class="dc-time">Sat 06:00</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="screen" id="screen-leaderboard">
+  <div class="lb-header" style="padding-top:0">
+    <div class="lb-title">CAMPUS<br><span>RANKINGS</span></div>
+    <div class="lb-week">Week of May 11, 2026 · Dibrugarh University</div>
+  </div>
+  <div class="lb-podium">
+    <div class="podium-item">
+      <div class="podium-rank r2">2</div>
+      <div class="podium-bar p2"><div class="pav pa2">S</div></div>
+      <div class="podium-name">Sneha R.</div><div class="podium-pts">1840 pts</div>
+    </div>
+    <div class="podium-item">
+      <div class="podium-rank r1">1</div>
+      <div class="podium-bar p1"><div class="pav pa1">A</div></div>
+      <div class="podium-name">Arshad K.</div><div class="podium-pts">2310 pts</div>
+    </div>
+    <div class="podium-item">
+      <div class="podium-rank r3">3</div>
+      <div class="podium-bar p3"><div class="pav pa3">P</div></div>
+      <div class="podium-name">Pritam B.</div><div class="podium-pts">1620 pts</div>
+    </div>
+  </div>
+  <div class="lb-list">
+    <div class="lb-row" style="border-color:rgba(0,229,255,.3)">
+      <div class="lb-pos" style="color:var(--cyan)">4</div>
+      <div class="lb-av" style="background:var(--pink)">M</div>
+      <div><div class="lb-name">Misha D.</div><div class="lb-sport">🚴 Cycling · 12 rides</div></div>
+      <div class="lb-pts">1380</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-pos">5</div>
+      <div class="lb-av" style="background:#7c3aed">R</div>
+      <div><div class="lb-name">Rahul T.</div><div class="lb-sport">⚽ Football · 8 matches</div></div>
+      <div class="lb-pts">1210</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-pos">6</div>
+      <div class="lb-av" style="background:#059669">N</div>
+      <div><div class="lb-name">Nisha G.</div><div class="lb-sport">🧘 Yoga · 15 sessions</div></div>
+      <div class="lb-pts">1090</div>
+    </div>
+    <div class="lb-row" style="border-color:var(--pink)">
+      <div class="lb-pos" style="color:var(--pink)">7</div>
+      <div class="lb-av" style="background:var(--cyan);color:#0a0d14">Y</div>
+      <div><div class="lb-name">You</div><div class="lb-sport">🚴 Cycling · 7 rides</div></div>
+      <div class="lb-pts" style="color:var(--pink)">920</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-pos">8</div>
+      <div class="lb-av" style="background:#d97706">B</div>
+      <div><div class="lb-name">Biren S.</div><div class="lb-sport">🏃 Running · 9 runs</div></div>
+      <div class="lb-pts">840</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div class="screen" id="screen-chat">
+  <div style="padding:0 16px 18px">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;margin-bottom:2px">TEAM<br><span style="color:var(--cyan)">CHATS</span></div>
+    <div style="font-size:13px;color:var(--muted)">Your active circles & events</div>
+  </div>
+  <div class="chat-list">
+    <div class="chat-row" onclick="showToast('💬 Opening DU Cycling Crew chat…')">
+      <div class="chat-av ci-cyan" style="background:rgba(0,229,255,.1)">🚴</div>
+      <div class="chat-info"><div class="chat-name">DU Cycling Crew</div><div class="chat-preview">Arshad: See you at 5:30 at the gate! 🚴</div></div>
+      <div class="chat-right"><div class="chat-time">5m ago</div><div class="chat-unread">3</div></div>
+    </div>
+    <div class="chat-row" onclick="showToast('💬 Opening Campus Football FC chat…')">
+      <div class="chat-av ci-lime" style="background:rgba(178,255,0,.1)">⚽</div>
+      <div class="chat-info"><div class="chat-name">Campus Football FC</div><div class="chat-preview">Poll: Who's playing today? → 14 votes</div></div>
+      <div class="chat-right"><div class="chat-time">23m ago</div><div class="chat-unread">7</div></div>
+    </div>
+    <div class="chat-row" onclick="showToast('💬 Opening Hostel Cup chat…')">
+      <div class="chat-av ci-pink" style="background:rgba(255,45,120,.1)">🏆</div>
+      <div class="chat-info"><div class="chat-name">Hostel Cup Org</div><div class="chat-preview">Schedule posted for round 2. Check now!</div></div>
+      <div class="chat-right"><div class="chat-time">1h ago</div><div class="chat-unread">2</div></div>
+    </div>
+    <div class="chat-row" onclick="showToast('💬 Opening Brahmaputra Runners chat…')">
+      <div class="chat-av ci-pink" style="background:rgba(255,45,120,.1)">🏃</div>
+      <div class="chat-info"><div class="chat-name">Brahmaputra Runners</div><div class="chat-preview">Nisha: Route updated, check the map</div></div>
+      <div class="chat-right"><div class="chat-time">3h ago</div><div style="width:18px;height:18px"></div></div>
+    </div>
+    <div class="chat-row" onclick="showToast('💬 Opening Yoga & Zumba chat…')">
+      <div class="chat-av ci-cyan" style="background:rgba(0,229,255,.1)">🧘</div>
+      <div class="chat-info"><div class="chat-name">Yoga & Zumba Circle</div><div class="chat-preview">Priya: Mats available at venue tonight 🧘</div></div>
+      <div class="chat-right"><div class="chat-time">5h ago</div><div style="width:18px;height:18px"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="screen" id="screen-profile">
+  <div class="profile-hero">
+    <div class="profile-av">A</div>
+    <div class="profile-name">ARSHAD KHAN</div>
+    <div class="profile-uni">B.Tech CSE · Dibrugarh University</div>
+    <div class="profile-stats">
+      <div class="ps"><div class="ps-n">7</div><div class="ps-l">Events</div></div>
+      <div class="ps"><div class="ps-n">3</div><div class="ps-l">Circles</div></div>
+      <div class="ps"><div class="ps-n">920</div><div class="ps-l">Points</div></div>
+      <div class="ps"><div class="ps-n">14</div><div class="ps-l">Day streak</div></div>
+    </div>
+  </div>
+  <div class="streak-bar">
+    <div class="streak-title">🔥 14-Day Streak</div>
+    <div class="streak-dots">
+      <div class="sd sd-done">Mo</div>
+      <div class="sd sd-done">Tu</div>
+      <div class="sd sd-done">We</div>
+      <div class="sd sd-done">Th</div>
+      <div class="sd sd-done">Fr</div>
+      <div class="sd sd-done">Sa</div>
+      <div class="sd sd-today">Su</div>
+    </div>
+  </div>
+  <div class="profile-sports">
+    <div class="section-title">SPORTS & ACTIVITIES</div>
+    <div class="sports-chips">
+      <span class="sport-chip sc-cyan">🚴 Cycling</span>
+      <span class="sport-chip sc-pink">⚽ Football</span>
+      <span class="sport-chip sc-lime">🏔️ Trekking</span>
+      <span class="sport-chip sc-cyan">🏃 Running</span>
+    </div>
+  </div>
+  <div class="profile-badges">
+    <div class="section-title">BADGES EARNED</div>
+    <div class="badges-grid">
+      <div class="badge-item"><div class="badge-icon">🚴</div><div><div class="badge-lbl">Road Warrior</div><div class="badge-sub">50km cycled</div></div></div>
+      <div class="badge-item"><div class="badge-icon">⚽</div><div><div class="badge-lbl">Playmaker</div><div class="badge-sub">10 matches</div></div></div>
+      <div class="badge-item"><div class="badge-icon">🔥</div><div><div class="badge-lbl">On Fire</div><div class="badge-sub">14-day streak</div></div></div>
+      <div class="badge-item"><div class="badge-icon">👥</div><div><div class="badge-lbl">Connector</div><div class="badge-sub">3 circles joined</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" id="nav-home" onclick="switchScreen('home')">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    HOME
+  </button>
+  <button class="nav-btn" id="nav-discover" onclick="switchScreen('discover')">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    DISCOVER
+  </button>
+  <button class="nav-btn" id="nav-leaderboard" onclick="switchScreen('leaderboard')">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+    RANKS
+  </button>
+  <button class="nav-btn" id="nav-chat" onclick="switchScreen('chat')">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    CHAT
+  </button>
+  <button class="nav-btn" id="nav-profile" onclick="switchScreen('profile')">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    PROFILE
+  </button>
+</nav>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-sheet" style="position:relative">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="modal-detail" id="modal-detail"></div>
+    <div class="modal-desc" id="modal-desc"></div>
+    <button class="modal-join" id="modal-join-btn" onclick="joinEvent()">JOIN THE CIRCLE →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="toast-msg"></span></div>
+
+<script>
+  function switchScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('screen-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+  }
+
+  function filterChip(el) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  let currentEvent = {};
+  function openModal(title, time, sport, icon, location, desc, color) {
+    currentEvent = { title };
+    document.getElementById('modal-title').textContent = icon + ' ' + title;
+    document.getElementById('modal-sub').textContent = '📍 ' + location;
+    document.getElementById('modal-desc').textContent = desc;
+    const c = color === 'cyan' ? 'var(--cyan)' : color === 'pink' ? 'var(--pink)' : 'var(--lime)';
+    document.getElementById('modal-detail').innerHTML =
+      `<div class="md-tag">🕐 ${time}</div><div class="md-tag" style="color:${c}">${sport}</div>`;
+    document.getElementById('modal-join-btn').style.background = c;
+    document.getElementById('modal-join-btn').textContent = 'JOIN THE CIRCLE →';
+    document.getElementById('modal').classList.add('open');
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal')) closeModalDirect();
+  }
+  function closeModalDirect() {
+    document.getElementById('modal').classList.remove('open');
+  }
+
+  function joinEvent() {
+    const btn = document.getElementById('modal-join-btn');
+    btn.textContent = '✓ JOINED!';
+    btn.style.background = 'var(--lime)';
+    showToast('🎉 You joined ' + currentEvent.title + '!');
+    setTimeout(closeModalDirect, 900);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.discover-card').forEach(c => {
+      c.style.display = c.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+    });
+  });
+</script>
 </body>
 </html>
