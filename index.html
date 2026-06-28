@@ -3,8 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arshad - Terminal</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>Arshad - Developer & Creator | Personal Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Arshad - Developer and Creator. Personal portfolio showcasing innovative projects, creative solutions, and professional expertise.">
+  <meta name="keywords" content="Arshad, developer, creator, portfolio, web developer, programmer, software engineer, coding, tech">
+  <meta name="author" content="Arshad">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://arshad.dev/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arshad.dev/">
+  <meta property="og:title" content="Arshad - Developer & Creator">
+  <meta property="og:description" content="Personal portfolio of Arshad - Developer and Creator showcasing innovative projects and creative solutions.">
+  <meta property="og:image" content="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://arshad.dev/">
+  <meta name="twitter:title" content="Arshad - Developer & Creator">
+  <meta name="twitter:description" content="Personal portfolio of Arshad - Developer and Creator showcasing innovative projects and creative solutions.">
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=1200">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arshad",
+    "jobTitle": "Developer",
+    "description": "Developer and Creator passionate about building innovative solutions",
+    "url": "https://arshad.dev",
+    "image": "https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "sameAs": []
+  }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
@@ -237,50 +274,52 @@
   </style>
 </head>
 <body>
-  <div class="terminal">
-    <div class="terminal-header">
-      <div class="terminal-btn btn-close"></div>
-      <div class="terminal-btn btn-minimize"></div>
-      <div class="terminal-btn btn-maximize"></div>
-      <span class="terminal-title">arshad@terminal:~</span>
-    </div>
-    <div class="terminal-body">
-      <div class="line"><span class="prompt">$</span> <span class="command">whoami</span></div>
-      <div class="line output">arshad</div>
+  <main role="main">
+    <article class="terminal" aria-label="Personal profile terminal">
+      <header class="terminal-header" aria-label="Terminal window controls">
+        <div class="terminal-btn btn-close" aria-hidden="true"></div>
+        <div class="terminal-btn btn-minimize" aria-hidden="true"></div>
+        <div class="terminal-btn btn-maximize" aria-hidden="true"></div>
+        <span class="terminal-title">arshad@terminal:~</span>
+      </header>
+      <section class="terminal-body" aria-label="Profile information">
+        <div class="line"><span class="prompt">$</span> <span class="command">whoami</span></div>
+        <div class="line output">arshad</div>
 
-      <div class="line"><span class="prompt">$</span> <span class="command">cat profile.json</span></div>
-      <div class="line output">{</div>
-      <div class="line output">&nbsp;&nbsp;"name": "<span class="highlight">Arshad</span>",</div>
-      <div class="line output">&nbsp;&nbsp;"role": "<span class="highlight">Developer | Creator</span>",</div>
-      <div class="line output">&nbsp;&nbsp;"status": "<span class="success">Online</span>"</div>
-      <div class="line output">}</div>
+        <div class="line"><span class="prompt">$</span> <span class="command">cat profile.json</span></div>
+        <div class="line output">{</div>
+        <div class="line output">&nbsp;&nbsp;"name": "<span class="highlight">Arshad</span>",</div>
+        <div class="line output">&nbsp;&nbsp;"role": "<span class="highlight">Developer | Creator</span>",</div>
+        <div class="line output">&nbsp;&nbsp;"status": "<span class="success">Online</span>"</div>
+        <div class="line output">}</div>
 
-      <div class="line"><span class="prompt">$</span> <span class="command">display --bio</span></div>
-      <div class="bio-section">
-        <img class="bio-image" src="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bio">
-        <div class="bio-content">
-          <table class="info-table">
-            <tr><td class="label">NAME:</td><td class="value">Arshad</td></tr>
-            <tr><td class="label"> ROLE:</td><td class="value">Developer</td></tr>
-            <tr><td class="label"> STATUS:</td><td class="value">Active</td></tr>
-            <tr><td class="label"> MODE:</td><td class="value">Creative</td></tr>
-          </table>
+        <div class="line"><span class="prompt">$</span> <span class="command">display --bio</span></div>
+        <figure class="bio-section" aria-label="Profile photo and details">
+          <img class="bio-image" src="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Arshad profile photo" loading="lazy" width="100" height="100">
+          <figcaption class="bio-content">
+            <table class="info-table" aria-label="Profile details">
+              <tr><td class="label">NAME:</td><td class="value">Arshad</td></tr>
+              <tr><td class="label"> ROLE:</td><td class="value">Developer</td></tr>
+              <tr><td class="label"> STATUS:</td><td class="value">Active</td></tr>
+              <tr><td class="label"> MODE:</td><td class="value">Creative</td></tr>
+            </table>
+          </figcaption>
+        </figure>
+
+        <div class="line"><span class="prompt">$</span> <span class="command">fortune</span></div>
+        <blockquote class="quote-box" aria-label="Inspirational quote">
+          <p class="quote-text" id="quoteText"></p>
+          <cite class="quote-author" id="quoteAuthor"></cite>
+        </blockquote>
+
+        <div class="action-line">
+          <span class="prompt">$</span>
+          <button class="refresh-btn" onclick="newQuote()" aria-label="Get new random quote">./next_quote.sh</button>
+          <span class="cursor" aria-hidden="true"></span>
         </div>
-      </div>
-
-      <div class="line"><span class="prompt">$</span> <span class="command">fortune</span></div>
-      <div class="quote-box">
-        <div class="quote-text" id="quoteText"></div>
-        <div class="quote-author" id="quoteAuthor"></div>
-      </div>
-
-      <div class="action-line">
-        <span class="prompt">$</span>
-        <button class="refresh-btn" onclick="newQuote()">./next_quote.sh</button>
-        <span class="cursor"></span>
-      </div>
-    </div>
-  </div>
+      </section>
+    </article>
+  </main>
 
   <script>
     const quotes = [
