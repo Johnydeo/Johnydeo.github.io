@@ -1,348 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arshad - Developer & Creator | Personal Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Arshad - Developer and Creator. Personal portfolio showcasing innovative projects, creative solutions, and professional expertise.">
-  <meta name="keywords" content="Arshad, developer, creator, portfolio, web developer, programmer, software engineer, coding, tech">
-  <meta name="author" content="Arshad">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://arshad.dev/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arshad Alom Ahmed — Thermal & Thermodynamics</title>
+<meta name="description" content="Mechanical engineering student at Dibrugarh University focused on thermodynamics, heat transfer and thermal system design.">
+<!-- Portrait: save your photo as portrait.jpg beside this file -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (after design.md) ============ */
+:root{
+  /* colors.surface */
+  --canvas:#ffffff; --surface-soft:#f7f7f7; --surface-strong:#eef0f3;
+  --surface-dark:#0a0b0d; --surface-dark-elevated:#16181c;
+  /* colors.hairline */
+  --hairline:#dee1e6; --hairline-soft:#eef0f3;
+  /* colors.text */
+  --ink:#0a0b0d; --body:#5b616e; --muted:#7c828a; --muted-soft:#a8acb3;
+  --on-primary:#ffffff; --on-dark:#ffffff; --on-dark-soft:#a8acb3;
+  /* colors.brand */
+  --primary:#0052ff; --primary-active:#003ecc; --primary-disabled:#a8b8cc;
+  --accent-yellow:#f4b000; /* illustrative only */
+  /* colors.semantic — text only, never fills */
+  --semantic-up:#05b169; --semantic-down:#cf202f;
+  /* rounded */
+  --r-md:12px; --r-xl:24px; --r-pill:100px; --r-full:9999px;
+  /* elevation — single shadow tier */
+  --shadow-soft:0 4px 12px rgba(0,0,0,.04);
+  /* spacing */
+  --sp-xs:8px; --sp-sm:12px; --sp-base:16px; --sp-lg:24px; --sp-xl:32px; --sp-xxl:48px; --section:96px;
+  /* type — CoinbaseDisplay/Sans → Inter; CoinbaseMono → JetBrains Mono */
+  --font-sans:'Inter',-apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:400 16px/1.5 var(--font-sans);color:var(--body);background:var(--canvas);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--primary);color:#fff}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
+.on-dark :focus-visible{outline-color:#fff}
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://arshad.dev/">
-  <meta property="og:title" content="Arshad - Developer & Creator">
-  <meta property="og:description" content="Personal portfolio of Arshad - Developer and Creator showcasing innovative projects and creative solutions.">
-  <meta property="og:image" content="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=1200">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="en_US">
+.container{max-width:1200px;margin:0 auto;padding:0 var(--sp-lg)}
+section{scroll-margin-top:84px}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://arshad.dev/">
-  <meta name="twitter:title" content="Arshad - Developer & Creator">
-  <meta name="twitter:description" content="Personal portfolio of Arshad - Developer and Creator showcasing innovative projects and creative solutions.">
-  <meta name="twitter:image" content="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=1200">
+/* ============ TYPE ============ */
+.display-mega{font:400 clamp(40px,7.4vw,80px)/1.0 var(--font-sans);letter-spacing:-2px;color:var(--ink)}
+.display-lg{font:400 clamp(32px,4.6vw,52px)/1.0 var(--font-sans);letter-spacing:-1.3px;color:var(--ink)}
+.display-md{font:400 clamp(28px,3.8vw,44px)/1.09 var(--font-sans);letter-spacing:-1px;color:var(--ink)}
+.title-lg{font:400 32px/1.13 var(--font-sans);letter-spacing:-.4px;color:var(--ink)}
+.title-md{font:600 18px/1.33 var(--font-sans);color:var(--ink)}
+.title-sm{font:600 16px/1.25 var(--font-sans);color:var(--ink)}
+.body-md{font:400 16px/1.5 var(--font-sans)}
+.caption{font:400 13px/1.5 var(--font-sans);color:var(--muted)}
+.num{font:500 18px/1.4 var(--font-mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.mono{font:500 13px/1.5 var(--font-mono);letter-spacing:.02em}
+.up{color:var(--semantic-up)} .down{color:var(--semantic-down)}
 
-  <!-- Structured Data / JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Arshad",
-    "jobTitle": "Developer",
-    "description": "Developer and Creator passionate about building innovative solutions",
-    "url": "https://arshad.dev",
-    "image": "https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "sameAs": []
-  }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface-strong);color:var(--ink);
+  font:600 12px/1.5 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;border-radius:var(--r-pill);padding:7px 14px}
+.badge.on-dark{background:rgba(255,255,255,.08);color:var(--on-dark)}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ============ BUTTONS — pill geometry everywhere ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:12px 20px;
+  border-radius:var(--r-pill);border:0;font:600 16px/1.15 var(--font-sans);text-decoration:none;cursor:pointer;transition:background .15s ease}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--primary);color:var(--on-primary)}
+.btn-primary:hover{background:var(--primary-active)}
+.btn-secondary-light{background:var(--surface-strong);color:var(--ink)}
+.btn-secondary-dark{background:var(--surface-dark-elevated);color:var(--on-dark)}
+.btn-outline-dark{background:transparent;color:var(--on-dark);border:1px solid rgba(255,255,255,.7)}
+.btn-cta{height:56px;padding:16px 32px}
+.btn .ar{font-family:var(--font-mono);font-weight:500}
 
-    body {
-      font-family: 'Fira Code', 'Courier New', monospace;
-      background: #0d0d0d;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+/* ============ TOP NAV ============ */
+header.site{position:fixed;inset:0 0 auto 0;z-index:50;height:64px;display:flex;align-items:center;
+  background:var(--surface-dark);color:var(--on-dark);border-bottom:1px solid rgba(255,255,255,.08);transition:background .25s ease,color .25s ease,border-color .25s ease}
+header.site.is-light{background:var(--canvas);color:var(--ink);border-bottom-color:var(--hairline)}
+.nav-inner{display:flex;align-items:center;gap:var(--sp-xl);width:100%}
+.wordmark{display:flex;align-items:center;gap:10px;font:600 16px/1 var(--font-sans);letter-spacing:-.2px;text-decoration:none;color:inherit}
+.wordmark .glyph{width:24px;height:24px;border-radius:var(--r-full);background:var(--primary);color:var(--on-primary);
+  display:grid;place-items:center;font:500 12px var(--font-mono)}
+nav.primary{display:flex;gap:var(--sp-lg);margin-left:auto}
+nav.primary a{font:500 14px/1.4 var(--font-sans);text-decoration:none;color:inherit;opacity:.82;padding:6px 2px}
+nav.primary a:hover{opacity:1}
+.nav-cta{display:flex;align-items:center;gap:var(--sp-base);margin-left:var(--sp-lg)}
+.nav-toggle{display:none;margin-left:auto;background:none;border:0;color:inherit;cursor:pointer;padding:10px}
+.nav-toggle span{display:block;width:20px;height:2px;background:currentColor;margin:4px 0}
+.mobile-sheet{display:none}
 
-    .terminal {
-      background: #1a1a1a;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 650px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-      border: 1px solid #333;
-    }
+/* ============ HERO — dark band + layered product-UI cards ============ */
+.hero{background:var(--surface-dark);color:var(--on-dark);padding:150px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:var(--sp-xxl);align-items:center;padding-bottom:var(--sp-xxl)}
+.hero .display-mega{color:var(--on-dark)}
+.hero-sub{margin:var(--sp-lg) 0 var(--sp-xl);max-width:46ch;color:var(--on-dark-soft)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:var(--sp-base)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:var(--sp-lg);margin-top:var(--sp-xxl);color:var(--on-dark-soft);font:500 13px/1.4 var(--font-mono)}
+.hero-meta span::before{content:"◈ ";color:var(--primary)}
 
-    .terminal-header {
-      background: #2d2d2d;
-      padding: 12px 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #333;
-    }
+.stack{position:relative;min-height:540px}
+.ui-card{background:var(--surface-dark-elevated);border:1px solid rgba(255,255,255,.07);border-radius:var(--r-xl);padding:var(--sp-xl);position:absolute}
+.ui-card .head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-base);margin-bottom:var(--sp-base)}
+.ui-card .head .t{font:600 14px/1.3 var(--font-sans);color:var(--on-dark)}
+.card-a{top:0;right:6%;width:min(430px,92%);transform:rotate(-1.5deg)}
+.card-b{top:300px;right:-1%;width:min(330px,78%);transform:rotate(2deg)}
+.card-c{top:190px;left:0;width:236px;transform:rotate(-4deg);padding:var(--sp-lg)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-base);margin-top:var(--sp-base);
+  border-top:1px solid rgba(255,255,255,.08);padding-top:var(--sp-base)}
+.metrics .lbl{font:400 12px/1.4 var(--font-sans);color:var(--on-dark-soft);margin-bottom:4px}
+.metrics .num{color:var(--on-dark)}
+.metrics .delta{font:500 12px/1.4 var(--font-mono)}
+.readrow{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-base);padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
+.readrow:first-of-type{border-top:0}
+.readrow .k{font:400 13px/1.4 var(--font-sans);color:var(--on-dark-soft)}
+.readrow .num{color:var(--on-dark);font-size:16px}
+.ts{width:100%;height:auto}
+.ts .axes line{stroke:rgba(255,255,255,.25);stroke-width:1}
+.ts .dome{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1.2;stroke-dasharray:4 5}
+.ts .cycle{fill:rgba(0,82,255,.10);stroke:var(--primary);stroke-width:2;stroke-linejoin:round}
+.ts .pt{fill:#fff}
+.ts text{font:500 10px var(--font-mono);fill:var(--on-dark-soft)}
 
-    .terminal-btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
+/* ============ TICKER ============ */
+.ticker{background:var(--surface-dark);border-top:1px solid rgba(255,255,255,.08);overflow:hidden;padding:14px 0}
+.ticker-track{display:flex;width:max-content;animation:tick 46s linear infinite}
+.ticker-track span{font:500 13px/1.5 var(--font-mono);color:var(--on-dark-soft);white-space:nowrap;padding-right:8px}
+.ticker-track span i{color:var(--primary);font-style:normal;padding:0 10px}
+@keyframes tick{to{transform:translateX(-50%)}}
 
-    .btn-close { background: #ff5f57; }
-    .btn-minimize { background: #febc2e; }
-    .btn-maximize { background: #28c840; }
+/* ============ BANDS ============ */
+.band{padding:var(--section) 0}
+.band-soft{background:var(--surface-soft)}
+.band-head{display:flex;flex-direction:column;gap:var(--sp-base);margin-bottom:var(--sp-xxl);max-width:760px}
+.band-head .badge{align-self:flex-start}
+.lede{color:var(--body);max-width:58ch}
 
-    .terminal-title {
-      color: #888;
-      font-size: 0.85rem;
-      margin-left: 10px;
-    }
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--sp-xxl);align-items:start}
+figure.portrait{margin:0}
+.frame{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--hairline);background:var(--surface-strong);aspect-ratio:4/5}
+.frame img{width:100%;height:100%;object-fit:cover}
+.portrait-fallback{display:none;width:100%;height:100%;place-items:center;font:400 64px/1 var(--font-sans);letter-spacing:-2px;color:var(--muted-soft)}
+figure.portrait.no-img .frame img{display:none}
+figure.portrait.no-img .portrait-fallback{display:grid}
+.fig-cap{display:flex;justify-content:space-between;gap:var(--sp-base);margin-top:var(--sp-sm)}
+.datalist{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-base) var(--sp-xl);margin:var(--sp-lg) 0 var(--sp-xl);
+  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:var(--sp-lg) 0}
+.datalist .k{font:600 12px/1.5 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.datalist .v{font:500 15px/1.4 var(--font-sans);color:var(--ink)}
+.plus-notes{display:flex;flex-direction:column}
+.plus-notes p{padding:var(--sp-lg) 0;border-top:1px solid var(--hairline);display:grid;grid-template-columns:24px 1fr;gap:var(--sp-base)}
+.plus-notes p:first-child{border-top:0}
+.plus-notes p::before{content:"+";font:500 18px/1.4 var(--font-mono);color:var(--primary)}
 
-    .terminal-body {
-      padding: 20px;
-      color: #00ff00;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+/* ============ QUOTE ============ */
+.quote{max-width:900px}
+.quote blockquote{font:400 clamp(26px,3.4vw,40px)/1.15 var(--font-sans);letter-spacing:-1px;color:var(--ink)}
+.quote cite{display:block;margin-top:var(--sp-lg);font:500 13px/1.5 var(--font-mono);color:var(--muted);font-style:normal}
 
-    .line {
-      margin-bottom: 5px;
-      opacity: 0;
-      animation: fadeIn 0.3s forwards;
-    }
+/* ============ TOOLKIT ROWS (asset-row language) ============ */
+.rows{border-top:1px solid var(--hairline)}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:var(--sp-lg);align-items:baseline;padding:var(--sp-lg) 0;border-bottom:1px solid var(--hairline)}
+.row .idx{font:500 14px/1.4 var(--font-mono);color:var(--muted)}
+.row .desc{color:var(--body);margin-top:4px;max-width:62ch}
+.rev-line{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-base);margin-bottom:var(--sp-lg)}
 
-    .line:nth-child(1) { animation-delay: 0.1s; }
-    .line:nth-child(2) { animation-delay: 0.2s; }
-    .line:nth-child(3) { animation-delay: 0.3s; }
-    .line:nth-child(4) { animation-delay: 0.4s; }
-    .line:nth-child(5) { animation-delay: 0.5s; }
-    .line:nth-child(6) { animation-delay: 0.6s; }
-    .line:nth-child(7) { animation-delay: 0.7s; }
-    .line:nth-child(8) { animation-delay: 0.8s; }
-    .line:nth-child(9) { animation-delay: 0.9s; }
+/* ============ CARDS ============ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-lg)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-lg)}
+.feature-card{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--r-xl);padding:var(--sp-xl);
+  display:flex;flex-direction:column;gap:var(--sp-base);transition:box-shadow .2s ease,transform .2s ease}
+.feature-card:hover{box-shadow:var(--shadow-soft);transform:translateY(-2px)}
+.feature-card .tags{display:flex;gap:var(--sp-xs);flex-wrap:wrap}
+.feature-card .numline{margin-top:auto;border-top:1px solid var(--hairline-soft);padding-top:var(--sp-base);
+  display:flex;flex-direction:column;gap:6px}
+.feature-card .numline div{display:flex;justify-content:space-between;gap:var(--sp-base)}
+.feature-card .numline .k{color:var(--muted);font:400 13px/1.5 var(--font-sans)}
+.feature-card .numline .num{font-size:15px}
+.link-tertiary{font:600 16px/1.15 var(--font-sans);color:var(--primary);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.link-tertiary:hover{text-decoration:underline}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* ============ EDUCATION ============ */
+.edu-card{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--sp-xxl);background:var(--canvas);
+  border:1px solid var(--hairline);border-radius:var(--r-xl);padding:var(--sp-xl)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--sp-xs);margin-top:var(--sp-base)}
+.chip{background:var(--surface-strong);color:var(--ink);border-radius:var(--r-pill);padding:8px 14px;font:500 13px/1.2 var(--font-sans)}
+.edu-side{border-left:1px solid var(--hairline);padding-left:var(--sp-xl);display:flex;flex-direction:column;gap:var(--sp-base)}
+.edu-side .rowline{display:flex;justify-content:space-between;gap:var(--sp-base);padding:10px 0;border-bottom:1px solid var(--hairline-soft)}
+.edu-side .rowline .k{color:var(--muted);font:400 14px/1.5 var(--font-sans)}
+.edu-side .rowline .v{color:var(--ink);font:500 14px/1.5 var(--font-sans)}
+.status{font:500 14px/1.5 var(--font-mono);color:var(--ink)}
+.status::before{content:"● ";color:var(--semantic-up)}
 
-    .prompt {
-      color: #00ff00;
-    }
+/* ============ CTA BAND + FOOTER ============ */
+.cta-band{background:var(--surface-dark);color:var(--on-dark);padding:var(--section) 0;text-align:center}
+.cta-band .display-md{color:var(--on-dark)}
+.cta-band p{color:var(--on-dark-soft);max-width:52ch;margin:var(--sp-base) auto var(--sp-xl)}
+.cta-band .hero-ctas{justify-content:center}
+.mail-line{margin-top:var(--sp-xl);font:500 15px/1.5 var(--font-mono)}
+.mail-line a{color:var(--on-dark);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.mail-line a:hover{border-bottom-color:#fff}
 
-    .command {
-      color: #ffffff;
-    }
+footer.site{background:var(--canvas);padding:var(--sp-xxl) 0 0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--sp-xxl);padding-bottom:var(--sp-xxl)}
+.foot-grid h4{font:600 12px/1.5 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--sp-base)}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-grid a{font:400 14px/1.5 var(--font-sans);color:var(--body);text-decoration:none}
+.foot-grid a:hover{color:var(--ink)}
+.legal{border-top:1px solid var(--hairline);padding:var(--sp-lg) 0;display:flex;flex-wrap:wrap;gap:var(--sp-base);
+  justify-content:space-between;align-items:center;font:400 13px/1.5 var(--font-sans);color:var(--muted)}
+.legal a{color:var(--muted);text-decoration:none}
+.legal a:hover{color:var(--ink)}
+/* ============ COMING SOON PILL ============ */
+.soon{display:inline-flex;align-items:center;gap:10px;width:max-content;
+  background:var(--surface-strong);color:var(--ink);border-radius:var(--r-pill);padding:8px 16px;
+  font:600 12px/1.5 var(--font-sans);letter-spacing:.08em;text-transform:uppercase}
+.soon .dot{width:8px;height:8px;border-radius:var(--r-full);background:var(--semantic-up)}
+@media (prefers-reduced-motion:no-preference){
+  .soon .dot{animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+}
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
 
-    .comment {
-      color: #686868;
-    }
-
-    .output {
-      color: #00ff00;
-      padding-left: 20px;
-    }
-
-    .highlight {
-      color: #00d4ff;
-    }
-
-    .success {
-      color: #00ff00;
-    }
-
-    .warning {
-      color: #ffff00;
-    }
-
-    .error {
-      color: #ff5555;
-    }
-
-    .bio-section {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      margin: 15px 0;
-      padding: 15px;
-      border: 1px solid #333;
-      background: rgba(0, 255, 0, 0.03);
-      border-radius: 5px;
-    }
-
-    .bio-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 5px;
-      object-fit: cover;
-      border: 2px solid #00ff00;
-      flex-shrink: 0;
-    }
-
-    .bio-content {
-      flex: 1;
-    }
-
-    .bio-content .line {
-      margin-bottom: 3px;
-    }
-
-    .quote-box {
-      margin: 15px 0;
-      padding: 15px;
-      border-left: 3px solid #00ff00;
-      background: rgba(0, 255, 0, 0.05);
-    }
-
-    .quote-text {
-      color: #ffffff;
-      font-style: italic;
-    }
-
-    .quote-author {
-      color: #686868;
-      margin-top: 8px;
-      font-size: 0.85rem;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 18px;
-      background: #00ff00;
-      animation: blink 1s infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .action-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .refresh-btn {
-      background: transparent;
-      border: 1px solid #00ff00;
-      color: #00ff00;
-      padding: 8px 20px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-    }
-
-    .refresh-btn:hover {
-      background: #00ff00;
-      color: #1a1a1a;
-    }
-
-    .divider {
-      color: #333;
-      margin: 10px 0;
-    }
-
-    .ascii-art {
-      color: #00ff00;
-      font-size: 0.6rem;
-      line-height: 1.2;
-      margin: 15px 0;
-      white-space: pre;
-    }
-
-    .info-table {
-      border-collapse: collapse;
-      margin: 10px 0;
-    }
-
-    .info-table td {
-      padding: 3px 15px 3px 0;
-    }
-
-    .info-table .label {
-      color: #686868;
-    }
-
-    .info-table .value {
-      color: #00d4ff;
-    }
-  </style>
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--sp-xxl)}
+  .stack{min-height:0;display:grid;gap:var(--sp-base)}
+  .ui-card{position:static;transform:none;width:100%}
+  .card-c{width:100%}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.edu-card{grid-template-columns:1fr}
+  .edu-side{border-left:0;padding-left:0;border-top:1px solid var(--hairline);padding-top:var(--sp-lg)}
+}
+@media (max-width:768px){
+  nav.primary,.nav-cta .btn-secondary-light{display:none}
+  .nav-toggle{display:block}
+  body.nav-open .mobile-sheet{display:block;position:fixed;top:64px;left:0;right:0;z-index:49;
+    background:var(--canvas);border-bottom:1px solid var(--hairline);padding:var(--sp-lg) var(--sp-lg) var(--sp-xl)}
+  .mobile-sheet a{display:block;padding:12px 0;font:500 16px/1.4 var(--font-sans);color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hairline-soft)}
+  .mobile-sheet .btn{margin-top:var(--sp-base);width:100%}
+  header.site{background:var(--surface-dark)!important;color:var(--on-dark)!important}
+}
+@media (max-width:640px){
+  .band{padding:64px 0}
+  .grid-3,.grid-2,.foot-grid{grid-template-columns:1fr}
+  .row{grid-template-columns:40px 1fr;gap:var(--sp-base)}
+  .row .badge{grid-column:2;justify-self:start}
+  .datalist{grid-template-columns:1fr}
+  .metrics{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ticker-track{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
 </head>
-<body>
-  <main role="main">
-    <article class="terminal" aria-label="Personal profile terminal">
-      <header class="terminal-header" aria-label="Terminal window controls">
-        <div class="terminal-btn btn-close" aria-hidden="true"></div>
-        <div class="terminal-btn btn-minimize" aria-hidden="true"></div>
-        <div class="terminal-btn btn-maximize" aria-hidden="true"></div>
-        <span class="terminal-title">arshad@terminal:~</span>
-      </header>
-      <section class="terminal-body" aria-label="Profile information">
-        <div class="line"><span class="prompt">$</span> <span class="command">whoami</span></div>
-        <div class="line output">arshad</div>
+<body id="top">
 
-        <div class="line"><span class="prompt">$</span> <span class="command">cat profile.json</span></div>
-        <div class="line output">{</div>
-        <div class="line output">&nbsp;&nbsp;"name": "<span class="highlight">Arshad</span>",</div>
-        <div class="line output">&nbsp;&nbsp;"role": "<span class="highlight">Developer | Creator</span>",</div>
-        <div class="line output">&nbsp;&nbsp;"status": "<span class="success">Online</span>"</div>
-        <div class="line output">}</div>
+<!-- ============ TOP NAV ============ -->
+<header class="site on-dark" id="site-header">
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top"><span class="glyph">A</span>Arshad Alom Ahmed</a>
+    <nav class="primary" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#toolkit">Toolkit</a>
+      <!-- <a href="#projects">Projects</a> -->
+      <!-- <a href="#writing">Writing</a> -->
+      <a href="#education">Education</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-secondary-light" href="#contact" style="background:rgba(255,255,255,.1);color:inherit">Sign in-ish</a>
+      <a class="btn btn-primary" href="#contact">Say hello <span class="ar">→</span></a>
+    </div>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-sheet" id="mobile-sheet">
+  <a href="#about">About</a>
+  <a href="#toolkit">Toolkit</a>
+  <!-- <!-- <a href="#projects">Projects</a> --> -->
+  <!-- <a href="#writing">Writing</a> -->
+  <a href="#education">Education</a>
+  <a class="btn btn-primary" href="#contact">Say hello →</a>
+</div>
 
-        <div class="line"><span class="prompt">$</span> <span class="command">display --bio</span></div>
-        <figure class="bio-section" aria-label="Profile photo and details">
-          <img class="bio-image" src="https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Arshad profile photo" loading="lazy" width="100" height="100">
-          <figcaption class="bio-content">
-            <table class="info-table" aria-label="Profile details">
-              <tr><td class="label">NAME:</td><td class="value">Arshad</td></tr>
-              <tr><td class="label"> ROLE:</td><td class="value">Developer</td></tr>
-              <tr><td class="label"> STATUS:</td><td class="value">Active</td></tr>
-              <tr><td class="label"> MODE:</td><td class="value">Creative</td></tr>
-            </table>
-          </figcaption>
-        </figure>
+<main>
+<!-- ============ HERO — dark band, layered product-UI mockups ============ -->
+<section class="hero on-dark">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge on-dark">Portfolio — Thermal Track / 2026</span>
+      <h1 class="display-mega" style="margin-top:24px">Every joule<br>accounted for.</h1>
+      <p class="hero-sub body-md">Arshad Alom Ahmed — mechanical engineering student at Dibrugarh University,
+        building real depth in thermodynamics, heat transfer and the thermal systems that turn heat into work.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-cta" href="#contact">Get in touch</a>
+        <!-- <a class="btn btn-secondary-dark btn-cta" href="#projects">See the bench work</a> -->
+      </div>
+      <div class="hero-meta">
+        <span>Chapar, Assam, IN</span>
+        <span>Dibrugarh University</span>
+        <span>Thermal &amp; Thermodynamics</span>
+      </div>
+    </div>
 
-        <div class="line"><span class="prompt">$</span> <span class="command">fortune</span></div>
-        <blockquote class="quote-box" aria-label="Inspirational quote">
-          <p class="quote-text" id="quoteText"></p>
-          <cite class="quote-author" id="quoteAuthor"></cite>
-        </blockquote>
-
-        <div class="action-line">
-          <span class="prompt">$</span>
-          <button class="refresh-btn" onclick="newQuote()" aria-label="Get new random quote">./next_quote.sh</button>
-          <span class="cursor" aria-hidden="true"></span>
+    <div class="stack" aria-hidden="false">
+      <!-- floating mockup: T–s cycle monitor -->
+      <div class="ui-card card-a">
+        <div class="head"><span class="t">Rankine cycle — parametric sweep</span><span class="badge on-dark">SIM</span></div>
+        <svg class="ts" viewBox="0 0 340 210" role="img" aria-label="Temperature–entropy diagram of a Rankine cycle">
+          <line x1="38" y1="12" x2="38" y2="178"/><line x1="38" y1="178" x2="322" y2="178"/>
+          <text x="26" y="16">T</text><text x="314" y="196">s</text>
+          <path class="dome" d="M58 178 C 96 74, 138 40, 168 40 C 198 40, 240 74, 278 178"/>
+          <path class="cycle" d="M92 150 L92 96 C 118 66, 150 58, 196 58 L214 58 L246 150 Z"/>
+          <circle class="pt" cx="92" cy="150" r="3"/><circle class="pt" cx="92" cy="96" r="3"/>
+          <circle class="pt" cx="214" cy="58" r="3"/><circle class="pt" cx="246" cy="150" r="3"/>
+          <text x="76" y="166">1</text><text x="76" y="92">2</text><text x="206" y="48">3</text><text x="252" y="166">4</text>
+        </svg>
+        <div class="metrics">
+          <div><div class="lbl">η_th</div><div class="num">38.4%</div><div class="delta up">+2.1 pts</div></div>
+          <div><div class="lbl">T_boiler</div><div class="num">540°C</div><div class="delta" style="color:var(--on-dark-soft)">16 MPa</div></div>
+          <div><div class="lbl">T_cond</div><div class="num">32°C</div><div class="delta" style="color:var(--on-dark-soft)">4.8 kPa</div></div>
         </div>
-      </section>
-    </article>
-  </main>
+      </div>
+      <!-- floating mockup: condenser readout -->
+      <div class="ui-card card-b">
+        <div class="head"><span class="t">Condenser — pass 3</span><span class="mono" style="color:var(--on-dark-soft)">LMTD</span></div>
+        <div class="readrow"><span class="k">Overall U</span><span class="num">840 W/m²·K</span></div>
+        <div class="readrow"><span class="k">ΔT_lm</span><span class="num">41.6 K</span></div>
+        <div class="readrow"><span class="k">Effectiveness ε</span><span class="num">0.87 <span class="delta up" style="font-size:12px">+0.03</span></span></div>
+        <div class="readrow"><span class="k">ΔP shell side</span><span class="num">12.4 kPa <span class="delta down" style="font-size:12px">+1.1</span></span></div>
+      </div>
+      <!-- floating mockup: second-law check -->
+      <div class="ui-card card-c">
+        <div class="caption" style="color:var(--on-dark-soft)">Second-law check</div>
+        <div class="num" style="color:var(--on-dark);margin-top:6px">ΔS_gen ≥ 0</div>
+        <div class="mono up" style="margin-top:6px">✓ satisfied</div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    const quotes = [
-      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-      { text: "In the middle of difficulty lies opportunity.", author: "Albert Einstein" },
-      { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
-      { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-      { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
-      { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
-      { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-      { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" },
-      { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
-      { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins" }
-    ];
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Enthalpy<i>+</i>Entropy<i>+</i>Exergy<i>+</i>Carnot<i>+</i>Rankine<i>+</i>Brayton<i>+</i>Refrigeration<i>+</i>Psychrometrics<i>+</i>Conduction<i>+</i>Convection<i>+</i>Radiation<i>+</i>LMTD<i>+</i>ε-NTU<i>+</i>Superheat<i>+</i>Subcooling<i>+</i>Fouling<i>+</i></span>
+      <span>Enthalpy<i>+</i>Entropy<i>+</i>Exergy<i>+</i>Carnot<i>+</i>Rankine<i>+</i>Brayton<i>+</i>Refrigeration<i>+</i>Psychrometrics<i>+</i>Conduction<i>+</i>Convection<i>+</i>Radiation<i>+</i>LMTD<i>+</i>ε-NTU<i>+</i>Superheat<i>+</i>Subcooling<i>+</i>Fouling<i>+</i></span>
+    </div>
+  </div>
+</section>
 
-    function newQuote() {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      const quote = quotes[randomIndex];
-      document.getElementById('quoteText').textContent = quote.text;
-      document.getElementById('quoteAuthor').textContent = '-- ' + quote.author;
-    }
+<!-- ============ 01 ABOUT ============ -->
+<section class="band" id="about">
+  <div class="container">
+    <div class="band-head reveal">
+      <span class="badge">01 — About</span>
+      <h2 class="display-lg">Energy in, work out —<br>everything else is loss.</h2>
+    </div>
+    <div class="about-grid">
+      <figure class="portrait reveal" id="portrait-fig">
+        <div class="frame">
+          <img src="portrait.jpeg" alt="Portrait of Arshad Alom Ahmed" onerror="document.getElementById('portrait-fig').classList.add('no-img')">
+          <div class="portrait-fallback">AAA</div>
+        </div>
+        <figcaption class="fig-cap">
+          <span class="caption">Fig. 01 — Portrait</span>
+          <span class="mono" style="color:var(--muted)">Scale 1:1 · Sheet A1</span>
+        </figcaption>
+      </figure>
+      <div class="reveal">
+        <div class="datalist">
+          <div><div class="k">Name</div><div class="v">Arshad Alom Ahmed</div></div>
+          <div><div class="k">Base</div><div class="v">Chapar, Assam</div></div>
+          <div><div class="k">Field</div><div class="v">Mechanical / Thermal</div></div>
+          <div><div class="k">Status</div><div class="v">Student, Class of 2026</div></div>
+        </div>
+        <div class="plus-notes">
+          <p>Pursuing mechanical engineering at Dibrugarh University with a deliberate focus on thermal science —
+             thermodynamics, heat transfer, and the systems that move heat from where it is to where it can do work.</p>
+          <p>Reads every machine as an energy balance: boiler, condenser, compressor, cooling tower — the quiet
+             components that decide whether a design survives contact with the second law.</p>
+          <p>Drafts in AutoCAD — schematics, layouts, dimensioned heat-exchanger geometry — because a thermal
+             calculation still has to become a drawing before it becomes metal.</p>
+          <p>Follows manufacturing closely: grinding, near-net-shape processing, precision casting and forging —
+             the processes that set the tolerances a thermal design must live inside.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    window.onload = newQuote;
-  </script>
+<!-- ============ QUOTE BAND ============ -->
+<section class="band band-soft">
+  <div class="container quote reveal">
+    <blockquote>“The law that entropy always increases is the supreme law of Nature.”</blockquote>
+    <cite>— Arthur Eddington, The Nature of the Physical World · pinned above the desk</cite>
+  </div>
+</section>
+
+<!-- ============ 02 TOOLKIT ============ -->
+<section class="band" id="toolkit">
+  <div class="container">
+    <div class="band-head reveal">
+      <span class="badge">02 — Toolkit</span>
+      <h2 class="display-lg">Instruments of the trade — thermal first.</h2>
+    </div>
+    <div class="rev-line reveal">
+      <span class="caption">Core competencies, ranked by hours spent at the board</span>
+      <span class="mono" style="color:var(--muted)">Rev. C — updated 2026</span>
+    </div>
+    <div class="rows reveal">
+      <div class="row"><span class="idx">01</span>
+        <div><div class="title-md">Engineering Thermodynamics</div>
+        <div class="desc">Laws, property relations, cycle analysis, exergy accounting — the grammar everything else is written in.</div></div>
+        <span class="badge">Core</span></div>
+      <div class="row"><span class="idx">02</span>
+        <div><div class="title-md">Heat Transfer</div>
+        <div class="desc">Conduction, convection, radiation; LMTD and ε-NTU methods for exchangers that actually fit in a room.</div></div>
+        <span class="badge">Core</span></div>
+      <div class="row"><span class="idx">03</span>
+        <div><div class="title-md">Thermal Systems &amp; Power Cycles</div>
+        <div class="desc">Rankine, Brayton and vapour-compression loops; component-level energy and entropy balances.</div></div>
+        <span class="badge">Core</span></div>
+      <div class="row"><span class="idx">04</span>
+        <div><div class="title-md">AutoCAD &amp; Thermal Drafting</div>
+        <div class="desc">Schematics, general arrangements and dimensioned drawings — precision geometry, clean annotation.</div></div>
+        <span class="badge">Core</span></div>
+      <div class="row"><span class="idx">05</span>
+        <div><div class="title-md">Computational Tools</div>
+        <div class="desc">Python / MATLAB for property lookups, cycle sweeps and cooling-load sheets; spreadsheet discipline included.</div></div>
+        <span class="badge">Developing</span></div>
+      <div class="row"><span class="idx">06</span>
+        <div><div class="title-md">Manufacturing Processes</div>
+        <div class="desc">Grinding, near-net-shape processing, casting and forging literacy — how the metal gets made.</div></div>
+        <span class="badge">Developing</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ============ 04 WRITING ============ -->
+<!-- <section class="band" id="writing">
+  <div class="container">
+<div class="band-head reveal">
+  <!-- <span class="badge">04 — Writing</span> -->
+  
+  <!-- <p class="soon"><span class="dot" aria-hidden="true"></span>Coming soon</p>
+</div>
+</section> --> -->
+
+<!-- ============ 05 EDUCATION ============ -->
+<section class="band band-soft" id="education">
+  <div class="container">
+    <div class="band-head reveal">
+      <span class="badge">05 — Education</span>
+      <h2 class="display-lg">Where the fundamentals are being built.</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div>
+        <span class="badge">Currently enrolled</span>
+        <h3 class="title-lg" style="margin:16px 0 12px">Dibrugarh University</h3>
+        <p class="body-md">Dibrugarh, Assam — pursuing mechanical engineering with a deliberate focus on thermal science:
+          the thermodynamics, heat transfer and power-plant knowledge that makes a calculation worth making,
+          plus the drafting skill to put it on paper.</p>
+        <div class="chips">
+          <span class="chip">Applied Thermodynamics</span>
+          <span class="chip">Heat &amp; Mass Transfer</span>
+          <span class="chip">Power Plant Engineering</span>
+          <span class="chip">Refrigeration &amp; AC</span>
+          <span class="chip">Fluid Mechanics</span>
+          <span class="chip">Engineering Drawing &amp; AutoCAD</span>
+        </div>
+      </div>
+      <div class="edu-side">
+        <div class="rowline"><span class="k">Focus</span><span class="v">Thermal &amp; CAD tools</span></div>
+        <div class="rowline"><span class="k">Mode</span><span class="v">Full-time study</span></div>
+        <div class="rowline"><span class="k">Base</span><span class="v">Assam, India</span></div>
+        <div class="status">In progress → 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band on-dark" id="contact">
+  <div class="container reveal">
+    <h2 class="display-md">Let’s build something<br>that runs cool.</h2>
+    <p>Open to internships, thermal-design collaborations and conversations about energy, heat and how things are actually manufactured. The best way to reach me is one click away.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary btn-cta" href="https://in.linkedin.com/in/arshad-alom-ahmed-b9a06b381" target="_blank" rel="noopener">Connect on LinkedIn <span class="ar">↗</span></a>
+      <a class="btn btn-outline-dark btn-cta" href="mailto:arshadalomahmed132@gmail.com">Send an email</a>
+    </div>
+    <div class="mail-line"><a href="mailto:arshadalomahmed132@gmail.com">arshadalomahmed132@gmail.com</a></div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="#top" style="color:var(--ink)"><span class="glyph">A</span>Arshad Alom Ahmed</a>
+        <p class="body-md" style="margin-top:16px;max-width:34ch">Mechanical engineering, thermal track — drawn precisely, checked twice, balanced always.</p>
+        <p class="mono" style="color:var(--muted);margin-top:16px">Guwahati · Dibrugarh — Assam, IN</p>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#toolkit">Toolkit</a></li>
+          <!-- <li><a href="#projects">Projects</a></li> -->
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#education">Education</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://in.linkedin.com/in/arshad-alom-ahmed-b9a06b381" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="mailto:arshadalomahmed132@gmail.com">arshadalomahmed132@gmail.com</a></li>
+          <li><a href="#top">Back to top ↑</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Arshad Alom Ahmed — Chapar · Dibrugarh, Assam, India</span>
+      <span>Design language adapted, as study, from an editorial fintech system: white canvas, one blue, pill geometry.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header: dark over hero, light after
+const header = document.getElementById('site-header');
+const hero = document.querySelector('.hero');
+const onScroll = () => {
+  header.classList.toggle('is-light', window.scrollY > hero.offsetHeight - 72);
+};
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+// Mobile sheet
+const toggle = document.querySelector('.nav-toggle');
+toggle.addEventListener('click', () => {
+  const open = document.body.classList.toggle('nav-open');
+  toggle.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('#mobile-sheet a').forEach(a =>
+  a.addEventListener('click', () => { document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded','false'); }));
+
+// Reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
