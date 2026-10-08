@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Arshad Alom Ahmed — Thermal & Thermodynamics</title>
 <meta name="description" content="Mechanical engineering student at Dibrugarh University focused on thermodynamics, heat transfer and thermal system design.">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Portrait: save your photo as portrait.jpg beside this file -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,33 +227,343 @@ footer.site{background:var(--canvas);padding:var(--sp-xxl) 0 0}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 
-/* ============ RESPONSIVE ============ */
+/* ============ ENHANCED RESPONSIVE / MOBILE ============ */
 @media (max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;gap:var(--sp-xxl)}
-  .stack{min-height:0;display:grid;gap:var(--sp-base)}
+  .container{padding-left:20px;padding-right:20px}
+  .hero{padding-top:118px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .stack{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .ui-card{position:static;transform:none;width:100%}
-  .card-c{width:100%}
+  .card-a{grid-column:1 / -1}
+  .card-b,.card-c{width:100%}
+  .card-c{grid-column:auto}
   .grid-3{grid-template-columns:repeat(2,1fr)}
   .about-grid,.edu-card{grid-template-columns:1fr}
-  .edu-side{border-left:0;padding-left:0;border-top:1px solid var(--hairline);padding-top:var(--sp-lg)}
+  .edu-side{border-left:0;padding-left:0;border-top:1px solid var(--hairline);padding-top:24px}
 }
+
 @media (max-width:768px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{font-size:15px}
+
+  .container{
+    width:100%;
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  section{scroll-margin-top:72px}
+
+  /* Navigation */
+  header.site{height:60px}
+  .nav-inner{gap:12px}
+  .wordmark{
+    min-width:0;
+    max-width:calc(100% - 58px);
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    font-size:15px;
+  }
+  .wordmark .glyph{flex:0 0 24px}
   nav.primary,.nav-cta .btn-secondary-light{display:none}
-  .nav-toggle{display:block}
-  body.nav-open .mobile-sheet{display:block;position:fixed;top:64px;left:0;right:0;z-index:49;
-    background:var(--canvas);border-bottom:1px solid var(--hairline);padding:var(--sp-lg) var(--sp-lg) var(--sp-xl)}
-  .mobile-sheet a{display:block;padding:12px 0;font:500 16px/1.4 var(--font-sans);color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hairline-soft)}
-  .mobile-sheet .btn{margin-top:var(--sp-base);width:100%}
-  header.site{background:var(--surface-dark)!important;color:var(--on-dark)!important}
+  .nav-cta{margin-left:auto;gap:0}
+  .nav-cta .btn-primary{display:none}
+  .nav-toggle{
+    display:block;
+    margin-left:0;
+    min-width:44px;
+    min-height:44px;
+  }
+
+  body.nav-open .mobile-sheet{
+    display:block;
+    position:fixed;
+    top:60px;
+    left:0;
+    right:0;
+    z-index:49;
+    max-height:calc(100dvh - 60px);
+    overflow-y:auto;
+    background:var(--canvas);
+    border-bottom:1px solid var(--hairline);
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+    padding:12px 18px 20px;
+  }
+
+  .mobile-sheet a{
+    display:block;
+    padding:14px 0;
+    font:500 16px/1.4 var(--font-sans);
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--hairline-soft);
+  }
+
+  .mobile-sheet .btn{
+    width:100%;
+    margin-top:14px;
+  }
+
+  header.site,
+  header.site.is-light{
+    background:var(--surface-dark)!important;
+    color:var(--on-dark)!important;
+    border-bottom-color:rgba(255,255,255,.08)!important;
+  }
+
+  /* Hero */
+  .hero{
+    padding-top:96px;
+  }
+
+  .hero-grid{
+    gap:32px;
+    padding-bottom:32px;
+  }
+
+  .display-mega{
+    font-size:clamp(38px,12vw,58px);
+    line-height:.98;
+    letter-spacing:-1.8px;
+  }
+
+  .display-lg{
+    font-size:clamp(30px,8vw,42px);
+    line-height:1.04;
+    letter-spacing:-1px;
+  }
+
+  .display-md{
+    font-size:clamp(28px,8vw,38px);
+  }
+
+  .hero-sub{
+    margin:18px 0 24px;
+    max-width:none;
+  }
+
+  .hero-ctas{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .hero-ctas .btn{
+    width:100%;
+  }
+
+  .hero-meta{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    margin-top:24px;
+  }
+
+  .stack{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .card-a,.card-b,.card-c{
+    grid-column:auto;
+  }
+
+  .ui-card{
+    padding:18px;
+    border-radius:18px;
+  }
+
+  .ui-card .head{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+
+  .ui-card .head .t{
+    min-width:0;
+    flex:1 1 180px;
+  }
+
+  .ts{
+    margin-top:4px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .metrics > div:last-child{
+    grid-column:1 / -1;
+  }
+
+  .ticker{padding:12px 0}
+  .ticker-track{animation-duration:34s}
+
+  /* General sections */
+  .band{padding:56px 0}
+  .band-head{gap:12px;margin-bottom:32px}
+  .lede{max-width:none}
+
+  /* About */
+  .frame{aspect-ratio:1/1.15}
+  .fig-cap{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .datalist{
+    grid-template-columns:1fr;
+    gap:16px;
+    margin:24px 0 28px;
+    padding:20px 0;
+  }
+
+  .plus-notes p{
+    grid-template-columns:20px 1fr;
+    gap:12px;
+    padding:16px 0;
+  }
+
+  /* Toolkit */
+  .rev-line{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:20px;
+  }
+
+  .row{
+    grid-template-columns:32px 1fr;
+    gap:10px 12px;
+    align-items:start;
+    padding:18px 0;
+  }
+
+  .row .idx{
+    font-size:12px;
+  }
+
+  .row .badge{
+    grid-column:2;
+    justify-self:start;
+  }
+
+  .row .desc{
+    max-width:none;
+    margin-top:6px;
+  }
+
+  /* Education */
+  .edu-card{
+    gap:24px;
+    padding:20px;
+    border-radius:18px;
+  }
+
+  .edu-side{
+    padding-top:20px;
+    gap:6px;
+  }
+
+  .edu-side .rowline{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:2px;
+    padding:10px 0;
+  }
+
+  .chips{gap:8px}
+  .chip{padding:8px 12px}
+
+  /* CTA */
+  .cta-band{padding:64px 0}
+  .cta-band p{max-width:none}
+
+  /* Footer */
+  footer.site{padding-top:48px}
+  .foot-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+    padding-bottom:40px;
+  }
+
+  .legal{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+    padding:18px 0 24px;
+  }
+
+  /* Touch targets */
+  a,.btn,button{touch-action:manipulation}
+
+  /* Prevent long email / technical strings from breaking the viewport */
+  .mail-line a,
+  .mono,
+  .num,
+  .rowline .v{
+    overflow-wrap:anywhere;
+  }
+
+  /* Reveal content should not disappear if JS is unavailable */
+  .reveal{
+    opacity:1;
+    transform:none;
+  }
 }
-@media (max-width:640px){
-  .band{padding:64px 0}
-  .grid-3,.grid-2,.foot-grid{grid-template-columns:1fr}
-  .row{grid-template-columns:40px 1fr;gap:var(--sp-base)}
-  .row .badge{grid-column:2;justify-self:start}
-  .datalist{grid-template-columns:1fr}
-  .metrics{grid-template-columns:1fr 1fr}
+
+@media (max-width:480px){
+  .container{padding-left:16px;padding-right:16px}
+
+  .hero{padding-top:88px}
+
+  .badge{
+    font-size:11px;
+    padding:6px 11px;
+  }
+
+  .display-mega{
+    font-size:clamp(36px,13vw,50px);
+  }
+
+  .title-lg{font-size:27px}
+  .title-md{font-size:17px}
+
+  .ui-card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .readrow{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:2px;
+  }
+
+  .readrow .num{
+    font-size:15px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr;
+  }
+
+  .metrics > div:last-child{
+    grid-column:auto;
+  }
+
+  .quote blockquote{
+    font-size:28px;
+  }
+
+  .cta-band .btn-cta{
+    height:auto;
+    min-height:52px;
+    padding:14px 20px;
+  }
 }
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .ticker-track{animation:none}
@@ -285,7 +594,7 @@ footer.site{background:var(--canvas);padding:var(--sp-xxl) 0 0}
 <div class="mobile-sheet" id="mobile-sheet">
   <a href="#about">About</a>
   <a href="#toolkit">Toolkit</a>
-  <!-- <!-- <a href="#projects">Projects</a> --> -->
+  <!-- <a href="#projects">Projects</a> -->
   <!-- <a href="#writing">Writing</a> -->
   <a href="#education">Education</a>
   <a class="btn btn-primary" href="#contact">Say hello →</a>
@@ -454,7 +763,7 @@ footer.site{background:var(--canvas);padding:var(--sp-xxl) 0 0}
   
   <!-- <p class="soon"><span class="dot" aria-hidden="true"></span>Coming soon</p>
 </div>
-</section> --> -->
+</section> -->
 
 <!-- ============ 05 EDUCATION ============ -->
 <section class="band band-soft" id="education">
